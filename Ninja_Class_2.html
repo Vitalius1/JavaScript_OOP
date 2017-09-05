@@ -1,0 +1,61 @@
+<html>
+        
+        <head>
+            <script>
+                function Ninja(name){
+                    var speed = 3;
+                    var strength = 3;
+                    this.health = 100;
+                    this.name = name;
+
+                    this.getStrength = function(){
+                        return strength;
+                    }
+                  
+                    this.showStats = function(){
+                        console.log("Health: " + this.health + ", Speed: " + speed + ", Strength: " + strength);
+                    }
+                }
+
+                Ninja.prototype.sayName = function(){
+                    console.log("My name is " + this.name);
+                }
+
+                Ninja.prototype.drinkSake = function(){
+                    this.health += 10;
+                }
+                
+                Ninja.prototype.punch = function(target){
+                    if(target.constructor === "Ninja"){
+                        target.health -= 5;
+                        console.log(target.name + " was punched by " + this.name + " and lost 5 Health!")
+                    }
+                    else{
+                        console.log("Can not punch this object. Must be another ninja.");
+                    }
+                }
+
+                Ninja.prototype.kick = function(target){
+                    if(target.constructor === "Ninja"){
+                        target.health -= 15 * this.getStrength();
+                        console.log(target.name + " was kicked by " + this.name + " and lost " + (15*this.getStrength()) + " Health!")
+                    }
+                    else{
+                        console.log("Can not punch this object. Must be another ninja.");
+                    }
+                }
+        
+                let red_ninja = new Ninja("Vitalie");
+                let blue_ninja = new Ninja("Diana");
+                blue_ninja.punch(red_ninja);
+                red_ninja.showStats();
+                blue_ninja.kick(red_ninja);
+                red_ninja.showStats();
+            </script>
+        </head>
+        
+        <body>
+        
+        </body>
+        
+        </html>
